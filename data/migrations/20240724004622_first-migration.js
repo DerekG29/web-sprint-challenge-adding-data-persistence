@@ -10,14 +10,14 @@ exports.up = function(knex) {
         .notNullable();
       table.string('project_description');
       table.boolean('project_completed')
-        .defaultTo(0);
+        .defaultTo(false);
     })
     .createTable('resources', table => { // many to many with projects using project_resources
       table.increments('resource_id');
       table.string('resource_name')
         .notNullable()
         .unique();
-      table.string('project_description');
+      table.string('resource_description');
     })
     .createTable('tasks', table => { // one to many with projects
       table.increments('task_id');
@@ -25,7 +25,7 @@ exports.up = function(knex) {
         .notNullable();
       table.string('task_notes');
       table.boolean('task_completed')
-        .defaultTo(0);
+        .defaultTo(false);
       table.integer('project_id')
         .notNullable()
         .references('project_id')
