@@ -2,12 +2,25 @@ const express = require('express');
 
 const router = express.Router();
 
+const { 
+  getProjects,
+  insertProject
+} = require('./model');
+
 router.get('/', (req, res, next) => {
-  res.json('GET at projects')
+  getProjects()
+    .then(projects => {
+      res.json(projects);
+    })
+    .catch(next);
 });
 
 router.post('/', (req, res, next) => {
-  res.json('POST at projects')
+  insertProject(req.body)
+    .then(project => {
+      res.status(201).json(project)
+    })
+    .catch(next);
 })
 
 module.exports = router;
