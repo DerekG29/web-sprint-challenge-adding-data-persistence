@@ -2,12 +2,25 @@ const express = require('express');
 
 const router = express.Router();
 
+const { 
+  getTasks,
+  insertTask
+} = require('./model');
+
 router.get('/', (req, res, next) => {
-  res.json('GET at tasks');
+  getTasks()
+  .then(projects => {
+    res.json(projects);
+  })
+  .catch(next);
 });
 
 router.post('/', (req, res, next) => {
-  res.json('POST at tasks');
+  insertTask(req.body)
+  .then(task => {
+    res.status(201).json(task);
+  })
+  .catch(next);
 });
 
 module.exports = router;

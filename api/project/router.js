@@ -18,9 +18,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   insertProject(req.body)
     .then(project => {
-      res.status(201).json(project)
+      res.status(201).json(project);
     })
     .catch(next);
-})
+});
 
 module.exports = router;
