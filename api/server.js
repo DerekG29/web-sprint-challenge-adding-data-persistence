@@ -14,4 +14,8 @@ server.get('*', (req, res, next) => { // eslint-disable-line
   res.status(400).json({ message: 'Nothing to see here...' });
 })
 
+server.use((error, req, res, next) => { // eslint-disable-line
+  res.status(500).json({ message: error.message });
+})
+
 module.exports = server;
