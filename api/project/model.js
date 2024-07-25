@@ -16,7 +16,7 @@ const getProjects = async () => {
       ...item,
       project_completed: Boolean(item.project_completed)
     }
-  })
+  });
   return result;
 }
 
